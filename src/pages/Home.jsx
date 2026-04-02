@@ -10,8 +10,16 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await supabase.from('Blog').select();
-      if (error) return console.log(error);
+      const { data, error } = await supabase
+        .from('Blog')
+        .select()
+        // order => use to Sort Data
+        .order('title', { ascending: true });
+
+      if (error) {
+        console.log(error.message);
+      }
+
       setBlogs(data);
     };
 

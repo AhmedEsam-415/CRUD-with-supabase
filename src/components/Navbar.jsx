@@ -22,11 +22,26 @@ const Navbar = () => {
       >
         Blog
       </Link>
-      <Link to="/create">
-        <button style={{ padding: '8px 16px', cursor: 'pointer' }}>
-          Create New
-        </button>
-      </Link>
+
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <Link to="/create">
+          <button style={{ padding: '8px 16px', cursor: 'pointer' }}>
+            Create New
+          </button>
+        </Link>
+        <Link to="/login">
+          <button
+            style={{
+              padding: '8px 16px',
+              cursor: 'pointer',
+              backgroundColor: '#007bff',
+              color: '#fff',
+            }}
+          >
+            LogIN
+          </button>
+        </Link>
+      </div>
     </nav>
   );
 };

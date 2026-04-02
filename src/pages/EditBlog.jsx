@@ -3,20 +3,23 @@ import { supabase } from '../utils/supabase';
 import { useEffect, useState } from 'react';
 
 const EditBlog = () => {
-  const { id } = useParams();
+  const { ID } = useParams();
   const navigate = useNavigate();
 
-  const [blogData, setBlogData] = useState({ title: '', description: '' });
+  const [blogData, setBlogData] = useState({
+    title: '',
+    description: '',
+  });
 
   // To Get Data From supaBase
   useEffect(() => {
     const getData = async () => {
-      const { data, error } = await supabase.from('Blog').select().eq('id', id);
+      const { data, error } = await supabase.from('Blog').select().eq('id', ID);
       if (error) return console.error(error.message);
       setBlogData(data[0]);
     };
     getData();
-  }, [id]);
+  }, [ID]);
 
   // To Handle Form Submission
   const handleSubmit = async (e) => {
@@ -26,8 +29,9 @@ const EditBlog = () => {
     const { error } = await supabase
       .from('Blog')
       .update(blogData)
-      .eq('id', id)
+      .eq('id', ID)
       .select();
+
     if (!error) {
       navigate('/');
     } else {
@@ -37,7 +41,7 @@ const EditBlog = () => {
 
   return (
     <div>
-      <h2>Edit Blog #{id}</h2>
+      <h2>Edit Blog #{ID}</h2>
       <form
         onSubmit={handleSubmit}
         style={{
